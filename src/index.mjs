@@ -1,8 +1,10 @@
 import Discord from 'discord.js';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv'
+import eventHandler from './handlers/event-handler.mjs'
 
 dotenv.config()
+
 const client = new Discord.Client({
 	intents: [
 		Discord.GatewayIntentBits.Guilds, 
@@ -12,64 +14,31 @@ const client = new Discord.Client({
 	]
 });
 
-async function getQuote() {
-    return fetch('https://zenquotes.io/api/random')
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            return data[0]["q"] + " -" + data[0]["a"]
-        })
-}	
+// const status = [
+// 	{
+// 		name : 'with your heart',
+// 		type : 'PLAYING'
+// 	},
+// 	{
+// 		name : 'with your mind',
+// 		type : 'WATCHING'
+// 	},
+// 	{
+// 		name : 'Living the best life',
+// 		type : 'STREAMING',
+// 		url : 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+// 	}
+// ]
 
-async function getDailyImageQuote() {
-    return fetch('https://zenquotes.io/api/image ')
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            return data[0]["q"] + " -" + data[0]["a"]
-        })
-}
+// client.on("ready", () => {
+//     console.log(`Logged in as ${client.user.tag}!`)
+	
+// 	setInterval(() => {
+// 		let random = Math.floor(Math.random() * status.length);
+// 		client.user.setActivity(status[random]);
+// 	}, 10000);
+// });
 
 eventHandler(client)
-
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`)
-	client.user.setActivity('Keep trying!'); //, { type: 'PLAYING' }
-
-	const ping = new Discord.SlashCommandBuilder()
-	.setName('ping')
-	.setDescription('Replies with pong!');
-
-	const inspire = new Discord.SlashCommandBuilder()
-	.setName('inspire')
-	.setDescription('Replies with an inspirational quote!');
-
-	client.application.commands.create(ping);
-	client.application.commands.create(inspire);
-});
-
-client.on('messageCreate', (msg) => {
-	if (msg.author.bot) return;	
-    if (msg.content === 'hello') {
-        //getQuote().then(quote => msg.channel.send(quote))
-		msg.reply('Hello!');
-    } else if (msg.content === 'inspire me') {
-		getQuote().then(quote => msg.reply(quote))
-	}
-})
-
-
-
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-	if (interaction.commandName === 'ping') {
-		await interaction.reply('Pong!');
-	}
-	if (interaction.commandName === 'inspire') {
-		getQuote().then(quote => interaction.reply(quote))
-	}
-})
 
 client.login(process.env.DISCORD_TOKEN);

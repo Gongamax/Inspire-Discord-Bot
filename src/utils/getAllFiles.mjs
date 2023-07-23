@@ -10,11 +10,11 @@ export default (directory , foldersOnly = false) => {
 
         if(foldersOnly) {
             if (file.isDirectory()) {
-                fileNames.push(file.name)
+                fileNames.push(filePath)
             }
         } else {
             if (file.isFile()) {
-                fileNames.push(file.name)
+                fileNames.push(filePath)
             }
         }
     }

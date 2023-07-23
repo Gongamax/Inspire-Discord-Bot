@@ -1,8 +1,5 @@
 import { REST, Routes } from 'discord.js';
 import dotenv from 'dotenv'
-import { readdirSync } from 'node:fs';
-import { join } from 'node:path';
-import path from 'node:path';
 
 dotenv.config()
 
