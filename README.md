@@ -1,6 +1,6 @@
 # InspireBot - Your Inspirational Quote Discord Bot
 
-![InspireBot Logo](./resource/InspireBotImage.png) 
+![InspireBot Logo](./resource/InspireBot.jpg) 
 
 InspireBot is a Discord bot built in JavaScript using Discord.js that aims to provide daily doses of inspiration and motivational quotes to users using [Zen Quotes API](https://zenquotes.io). It's designed to uplift spirits, spread positivity, and make the Discord community a better place.
 

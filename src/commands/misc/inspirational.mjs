@@ -8,7 +8,7 @@ export function callback(client, interaction) {
     getQuote().then(quote => interaction.reply(quote))
 }
 
-async function getQuote() {
+export async function getQuote() {
     return fetch('https://zenquotes.io/api/random')
         .then(res => {
             return res.json()
