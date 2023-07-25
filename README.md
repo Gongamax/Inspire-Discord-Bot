@@ -33,10 +33,9 @@ cd inspirebot
 npm install
 ```
 
-3. **Set Up Configuration**: Rename config.example.json to config.json and fill in your Discord bot token and other configuration options.
+3. **Set Up Configuration**: Create a .env file and fill in with DISCORD_TOKEN, CLIENT_ID and GUILD_ID environment variables.
 
 4. **Run the Bot**: Launch the bot with the following command:
-(Still under development, working on project structure)
 ```bash
 node index.mjs 
 ```
